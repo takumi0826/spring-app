@@ -11,8 +11,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
