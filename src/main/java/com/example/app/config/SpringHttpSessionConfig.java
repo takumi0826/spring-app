@@ -1,21 +1,22 @@
 package com.example.app.config;
-import java.util.concurrent.ConcurrentHashMap;
+import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.session.MapSessionRepository;
-import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
+import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * @author
  */
 @Configuration
-@EnableSpringHttpSession
+@EnableJdbcHttpSession
  public class SpringHttpSessionConfig {
 
-    @Bean
-		public MapSessionRepository sessionRepository() {
-				return new MapSessionRepository(new ConcurrentHashMap<>());
+		@Bean
+		public PlatformTransactionManager transactionManager(DataSource dataSource) {
+			return new DataSourceTransactionManager(dataSource);
 		}
 
  }
