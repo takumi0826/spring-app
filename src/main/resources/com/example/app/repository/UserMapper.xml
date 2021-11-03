@@ -3,27 +3,45 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.repository.UserMapper">
-  <!-- ユーザー1件登録 -->
-  <insert id="insertOne">
-    insert into m_user (
-      user_id,
-      password,
-      user_name,
-      birthday,
-      age,
-      gender,
-      department_id,
-      role
-    )
-    values (
-      #{userId},
-      #{password},
-      #{userName},
-      #{birthday},
-      #{age},
-      #{gender},
-      #{departmentId},
-      #{role}
-    )
-  </insert>
+    <resultMap type="com.example.app.entity.MUser" id="MUser">
+      <result property="userId" column="user_id"></result>
+      <result property="password" column="password"></result>
+      <result property="userName" column="user_name"></result>
+      <result property="birthday" column="birthday"></result>
+      <result property="age" column="age"></result>
+      <result property="gender" column="gender"></result>
+      <result property="departmentId" column="department_id"></result>
+      <result property="role" column="role"></result>
+    </resultMap>
+    <select id="findMany" resultMap="MUser">
+      select
+        *
+      from
+      m_user
+      ;
+    </select>
+
+    <!-- ユーザー1件登録 -->
+    <insert id="insertOne">
+      insert into m_user (
+        user_id,
+        password,
+        user_name,
+        birthday,
+        age,
+        gender,
+        department_id,
+        role
+      )
+      values (
+        #{userId},
+        #{password},
+        #{userName},
+        #{birthday},
+        #{age},
+        #{gender},
+        #{departmentId},
+        #{role}
+      )
+    </insert>
 </mapper>
