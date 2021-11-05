@@ -3,25 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.repository.UserMapper">
-    <resultMap type="com.example.app.entity.MUser" id="MUser">
-      <result property="userId" column="user_id"></result>
-      <result property="password" column="password"></result>
-      <result property="userName" column="user_name"></result>
-      <result property="birthday" column="birthday"></result>
-      <result property="age" column="age"></result>
-      <result property="gender" column="gender"></result>
-      <result property="departmentId" column="department_id"></result>
-      <result property="role" column="role"></result>
-    </resultMap>
-    <select id="findMany" resultMap="MUser">
-      select
-        *
-      from
-      m_user
-      ;
-    </select>
-
-    <!-- ユーザー1件登録 -->
     <insert id="insertOne">
       insert into m_user (
         user_id,
@@ -44,4 +25,63 @@
         #{role}
       )
     </insert>
+
+    <resultMap type="com.example.app.entity.MUser" id="MUser">
+      <result property="userId" column="user_id"></result>
+      <result property="password" column="password"></result>
+      <result property="userName" column="user_name"></result>
+      <result property="birthday" column="birthday"></result>
+      <result property="age" column="age"></result>
+      <result property="gender" column="gender"></result>
+      <result property="departmentId" column="department_id"></result>
+      <result property="role" column="role"></result>
+    </resultMap>
+    <select id="findMany" resultMap="MUser">
+      select
+        *
+      from
+      m_user
+      ;
+    </select>
+
+    <select id="findOne" resultMap="MUser">
+      select
+        *
+      from
+        m_user
+      where
+        user_id = #{userId}
+      ;
+    </select>
+
+    <update id="updateOne">
+      update
+        m_user
+      set
+        user_name = #{userName},
+        password = #{password}
+      where
+        user_id = #{user_id}
+      ;
+    </update>
+
+    <delete id="deleteOne">
+      delete
+      from
+        m_user
+      where
+        user_id = #{user_id}
+      ;
+    </delete>
+
+    <select id="findLoginUser" resultMap="MUser">
+      select
+        *
+      from
+        m_user
+      where
+        user_id = #{userId}
+        and password = #{password}
+      ;
+    </select>
 </mapper>

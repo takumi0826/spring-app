@@ -1,10 +1,9 @@
-package com.example.app.form;
+package com.example.app.dto;
 
 import lombok.Data;
 
 @Data
-public class UserAuthForm {
-
+public class UserAuthDto {
   private String userId;
 
   private String password;

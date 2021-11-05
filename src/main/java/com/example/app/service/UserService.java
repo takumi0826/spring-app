@@ -12,5 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-  List<MUser> findMany();
-} 
+  void signup(MUser user);
+
+  List<MUser> getUsers();
+
+  MUser getUserOne(String userId);
+
+  void updateUserOne(String userId, String password, String userName);
+
+  void deleteUserOne(String userId);
+
+  MUser getLoginUser(String userId);
+}

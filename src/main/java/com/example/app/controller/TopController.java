@@ -28,7 +28,7 @@ public class TopController extends BaseController {
     model.addAttribute("userAuthForm", form);
     model.addAttribute("cookie", cookie);
 
-    List<MUser> userList = userService.findMany();
+    List<MUser> userList = userService.getUsers();
     model.addAttribute("user", userList);
     return "index";
   }
