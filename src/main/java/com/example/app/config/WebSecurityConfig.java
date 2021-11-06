@@ -7,13 +7,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+  private final UserDetailsService userDetailsService;
 
   @Bean
   PasswordEncoder passwordEncoder() {
@@ -52,14 +58,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   /** セキュリティの各種設定 */
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+    PasswordEncoder encoder = passwordEncoder();
+
     // インメモリ認証
-    auth.inMemoryAuthentication()
-        .withUser("gene")
-        .password(passwordEncoder().encode("gene"))
-        .roles("GENERAL")
-        .and()
-        .withUser("admin")
-        .password(passwordEncoder().encode("admin"))
-        .roles("ADMIN");
+    // auth.inMemoryAuthentication()
+    //     .withUser("gene")
+    //     .password(passwordEncoder().encode("gene"))
+    //     .roles("GENERAL")
+    //     .and()
+    //     .withUser("admin")
+    //     .password(passwordEncoder().encode("admin"))
+    //     .roles("ADMIN");
+
+    // ユーザーデータで認証
+    auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
   }
 }
