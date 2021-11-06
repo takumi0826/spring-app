@@ -1,0 +1,10 @@
+label {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.error-message {
+  color: red;
+  display: block;
+  margin-top: 8px;
+}

@@ -2,7 +2,7 @@ package com.example.app.service;
 
 import java.util.List;
 
-import com.example.app.entity.MUser;
+import com.example.app.dto.UserInfoDto;
 
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-  void signup(MUser user);
+  void signup(UserInfoDto user);
 
-  List<MUser> getUsers();
+  List<UserInfoDto> getUsers();
 
-  MUser getUserOne(String userId);
+  UserInfoDto getUserOne(String userId);
 
   void updateUserOne(String userId, String password, String userName);
 
   void deleteUserOne(String userId);
 
-  MUser getLoginUser(String userId);
+  UserInfoDto getLoginUser(String userId);
 }

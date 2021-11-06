@@ -81,7 +81,6 @@
         m_user
       where
         user_id = #{userId}
-        and password = #{password}
       ;
     </select>
 </mapper>

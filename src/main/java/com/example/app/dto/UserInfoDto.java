@@ -1,11 +1,11 @@
-package com.example.app.entity;
+package com.example.app.dto;
 
 import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class MUser {
+public class UserInfoDto {
 
   private String userId;
 
@@ -20,6 +20,6 @@ public class MUser {
   private Integer gender;
 
   private Integer departmentId;
-  
+
   private String role;
 }

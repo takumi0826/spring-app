@@ -5,9 +5,39 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
   <h1>登録ページ</h1>
-  <p><a href="/top">TOP</a></p>
+  <form th:action="@{/user/signup}" th:object="${userInfoForm}" method="post">
+    <label for="userId">
+      ユーザーID<br>
+      <input type="text" for="userId" th:field="*{userId}">
+      <span class="error-message" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+    </label>
+    <label for="password">
+      パスワード<br>
+      <input type="text" for="password" th:field="*{password}">
+      <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </label>
+    <label for="birthday">
+      誕生日<br>
+      <input type="date" for="birthday" th:field="*{birthday}">
+      <span class="error-message" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></span>
+    </label>
+    <label for="age">
+      年齢<br>
+      <input type="number" min="1" max="100" for="age" th:field="*{age}">
+      <span class="error-message" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    </label>
+    <label for="gender">
+      性別<br>
+      男性: <input type="radio" for="gender" th:field="*{gender}" value="1" checked>
+      女性: <input type="radio" for="gender" th:field="*{gender}" value="2">
+      <span class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    </label>
+    <input type="submit" value="登録">
+  </form>
+  <p><a href="/login">ログインページ</a></p>
 </body>
 </html>

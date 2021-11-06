@@ -3,7 +3,7 @@ package com.example.app.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.app.entity.MUser;
+import com.example.app.dto.UserInfoDto;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    MUser loginUser = service.getLoginUser(username);
+    UserInfoDto loginUser = service.getLoginUser(username);
 
     if (loginUser == null) {
       throw new UsernameNotFoundException("ユーザーが見つからないよ");
