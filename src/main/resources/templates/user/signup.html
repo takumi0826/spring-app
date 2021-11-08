@@ -9,7 +9,7 @@
 </head>
 <body>
   <h1>登録ページ</h1>
-  <form th:action="@{/user/signup}" th:object="${userInfoForm}" method="post">
+  <form th:action="@{/signup}" th:object="${signupForm}" method="post">
     <label for="userId">
       ユーザーID<br>
       <input type="text" for="userId" th:field="*{userId}">
@@ -19,6 +19,11 @@
       パスワード<br>
       <input type="text" for="password" th:field="*{password}">
       <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </label>
+    <label for="userName">
+      ユーザー名<br>
+      <input type="text" for="userName" th:field="*{userName}">
+      <span class="error-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userId}"></span>
     </label>
     <label for="birthday">
       誕生日<br>
@@ -38,6 +43,6 @@
     </label>
     <input type="submit" value="登録">
   </form>
-  <p><a href="/login">ログインページ</a></p>
+  <p><a th:href="@{/login}">ログインページ</a></p>
 </body>
 </html>

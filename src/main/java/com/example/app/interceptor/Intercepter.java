@@ -3,16 +3,23 @@ package com.example.app.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.app.service.UserService;
+
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
-public class Intercepter implements HandlerInterceptor{
+@RequiredArgsConstructor
+public class Intercepter implements HandlerInterceptor {
+  
+  private final UserService userService;
+
   @Override
-  public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object Handler) throws Exception { 
-    System.out.println("コントローラー前に行いたい共通処理を書く。 ");
+  public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object Handler) throws Exception {
     //true: コントローラへ。false: コントローラーへ行かせない。
     return true;
   }

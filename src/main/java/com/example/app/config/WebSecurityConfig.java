@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // ログイン不要ページの設定
     http.authorizeRequests()
         .antMatchers("/login") // 直リンクOK
-        .permitAll().antMatchers("/user/signup").permitAll() // 直リンクOK
+        .permitAll().antMatchers("/signup").permitAll() // 直リンクOK
         .anyRequest().authenticated(); // それ以外直リンクNG
 
     // ログイン処理

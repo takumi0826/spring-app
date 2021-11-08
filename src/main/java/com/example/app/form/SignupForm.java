@@ -10,27 +10,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
 
 @Data
-public class UserInfoForm {
+public class SignupForm {
 
-  @NotBlank
+  @NotBlank(message = "{NotBlank}")
   private String userId;
 
-  @NotBlank
+  @NotBlank(message = "{NotBlank}")
   private String password;
 
-  // @NotBlank
+  @NotBlank(message = "{NotBlank}")
   private String userName;
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date birthday;
 
-  @NotNull
+  @NotNull(message = "{NotNull}")
   private Integer age;
 
-  @NotNull
+  @NotNull(message = "{NotNull}")
   private Integer gender;
-
-  private Integer departmentId;
-
-  private String role;
 }

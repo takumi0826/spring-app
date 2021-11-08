@@ -1,7 +1,8 @@
 package com.example.app.controller;
 
+import com.example.app.constant.UrlConst;
 import com.example.app.dto.UserInfoDto;
-import com.example.app.form.UserInfoForm;
+import com.example.app.form.SignupForm;
 import com.example.app.service.UserService;
 
 import org.modelmapper.ModelMapper;
@@ -13,29 +14,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
-public class SignUpController {
+@Slf4j
+public class SignupController {
 
   private final UserService userService;
 
   private final ModelMapper modelMapper;
 
-  @GetMapping(value="/user/signup")
-  public String init(UserInfoForm form, Model model) {
-    model.addAttribute("userInfoForm", form);
-    return "user/signup";
+  @GetMapping(value = UrlConst.SIGNUP)
+  public String init(SignupForm form, Model model) {
+    model.addAttribute("signupForm", form);
+    return "/user/signup";
   }
 
-  @PostMapping(value="/user/signup")
-  public String signUp(@Validated UserInfoForm form, BindingResult error, Model model) {
+  @PostMapping(value = UrlConst.SIGNUP)
+  public String signUp(@Validated SignupForm form, BindingResult error, Model model) {
+    log.info(form.toString());
     if(error.hasErrors()){
       return "/user/signup";
     }
 
     UserInfoDto dto = modelMapper.map(form, UserInfoDto.class);
     userService.signup(dto);
-    return "/login";
+    return "redirect:/login";
   }
 }

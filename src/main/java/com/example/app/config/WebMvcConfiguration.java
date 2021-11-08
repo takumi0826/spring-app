@@ -16,7 +16,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(intercepter);
+    registry.addInterceptor(intercepter).addPathPatterns("/**").excludePathPatterns("/login", "/signup");
 
     // .addPathPatterns("/") で追加したパスにInterceptorが実行される。
     // .excludePathPatterns("/"); // 除外したいパス

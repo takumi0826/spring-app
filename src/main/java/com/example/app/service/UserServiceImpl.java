@@ -2,6 +2,7 @@ package com.example.app.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.app.dto.UserInfoDto;
 import com.example.app.entity.MUser;
@@ -27,8 +28,10 @@ public class UserServiceImpl implements UserService {
   private final PasswordEncoder passwordEncoder;
 
   @Override
-  public void signup(UserInfoDto user) {
+  public void signup(UserInfoDto user){
     user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setDepartmentId(1);
+    user.setRole("ROLE_GENERAL");
     MUser entity = modelMapper.map(user, MUser.class);
     mapper.insertOne(entity);
   }
@@ -47,10 +50,10 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserInfoDto getUserOne(String userId) {
+  public Optional<UserInfoDto> getUserOne(String userId) {
     MUser result = mapper.findOne(userId);
     UserInfoDto outDto = modelMapper.map(result, UserInfoDto.class);
-    return outDto;
+    return Optional.ofNullable(outDto);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package com.example.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.app.dto.UserInfoDto;
 
@@ -16,7 +17,7 @@ public interface UserService {
 
   List<UserInfoDto> getUsers();
 
-  UserInfoDto getUserOne(String userId);
+  Optional<UserInfoDto> getUserOne(String userId);
 
   void updateUserOne(String userId, String password, String userName);
 
